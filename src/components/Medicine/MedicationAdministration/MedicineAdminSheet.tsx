@@ -88,6 +88,11 @@ const MedicineListItem = ({
               </span>
             )}
           </div>
+          {medicine.note && (
+            <p className="text-sm text-gray-500 italic whitespace-pre-wrap break-words">
+              {medicine.note}
+            </p>
+          )}
         </div>
         <div className="mt-1 mr-6">
           <Checkbox
@@ -206,7 +211,7 @@ export function MedicineAdminSheet({
     [medications, encounterId],
   );
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const administrations = Array.from(selectedMedicines).map(
       (id) => administrationRequests[id],
