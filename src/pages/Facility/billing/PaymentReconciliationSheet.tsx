@@ -58,7 +58,6 @@ import {
   useEntityExtensions,
   useExtensionSchemas,
 } from "@/hooks/useExtensions";
-import { register } from "@/lib/override/register";
 import { AccountRead } from "@/types/billing/account/Account";
 import { InvoiceRead } from "@/types/billing/invoice/invoice";
 import {
@@ -183,7 +182,7 @@ const createFormSchema = (
       },
     );
 
-const PaymentReconciliationSheetBase = ({
+export function PaymentReconciliationSheet({
   open,
   onOpenChange,
   facilityId,
@@ -192,7 +191,7 @@ const PaymentReconciliationSheetBase = ({
   accountId,
   onSuccess,
   isCreditNote = false,
-}: PaymentReconciliationSheetProps) => {
+}: PaymentReconciliationSheetProps) {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const formRef = useRef<HTMLFormElement>(null);
@@ -755,9 +754,4 @@ const PaymentReconciliationSheetBase = ({
       </SheetContent>
     </Sheet>
   );
-};
-
-export const PaymentReconciliationSheet = register(
-  "PaymentReconciliationSheet",
-  PaymentReconciliationSheetBase,
-);
+}
